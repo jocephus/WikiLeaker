@@ -14,6 +14,6 @@ To ensure all the appropriate Python3 modules are installed:
 `pip3 install -r requirements.txt`
 
 ## Running Wikileaker.py
-`python3 wiki_proto.py <domain of your choosing>`
+`python3 Wikileaker.py <domain of your choosing>`
 
 Voila!
