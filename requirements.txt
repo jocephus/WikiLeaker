@@ -1,5 +1,3 @@
-sys
-time
 requests
 bs4
 pandas
