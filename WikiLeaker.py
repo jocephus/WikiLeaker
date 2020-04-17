@@ -23,7 +23,23 @@ def banner():
 
 def usage():
         print('\n')
-        print('Usage: python3 WikiLeaker.py <domain>')
+        print('Usage: python3 WikiLeaker.py <domain>\n')
+        print('Sample Output:\n')
+        print('************************************************************')
+        print("Date: ['1-1-1970']")
+        print("Sender: ['sample@acme.org']")
+        print("Subject: ['Your Password Inspection Results']")
+        print("URL: ['http://preorder.seosint.xyz']")
+        print("Leak: ['Sony']")
+        print('************************************************************')
+        print("Date: ['10-13-2020']")
+        print("Sender: ['joe@sample.org']")
+        print("Subject: ['Pre-Order My Book']")
+        print("URL: ['http://preorder.seosint.xyz']")
+        print("Leak: ['Joe's Revelations']")
+        print('************************************************************')
+        
+        
 
 
 def wikileaks(REQ_VAR):
@@ -95,16 +111,17 @@ def run():
                         VALIDATION_REGEX = re.compile(r"(?P<domain>\w+\.\w{2,6})")
                         validation_check = VALIDATION_REGEX.findall(DOMAIN)
                         if validation_check:
-                                URL = 'https://search.wikileaks.org/?query=&exact_phrase='+DOMAIN+'&include_external_sources=True&order_by=newest_document_date'
+                                URL = 'https://search.wikileaks.org/?query=&exact_phrase='+DOMAIN+'&include_external_sources=True&order_by=newest_document_date&page=' + str(page_count)
                                 print(URL)
                                 REQ_VAR = requests.get(URL)
-                                wikileaks(REQ_VAR)
-                                continuer()
+                                if REQ_VAR.status_code == 200:
+                                        wikileaks(REQ_VAR)
+                                        continuer()
+                                else:
+                                        print(str(REQ_VAR.status_code))
 
 
         except Exception as error_code:
                 usage()
-                #print(error_code)
-
 
 banner()
