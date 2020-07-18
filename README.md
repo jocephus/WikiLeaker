@@ -16,7 +16,7 @@ A scraper inspired by the Datasploit module written in Python2. This script leve
 `sudo ./setup.sh`
 
 ## Running Wikileaker.py
-`python3 Wikileaker.py <domain of your choosing>`
+`python3 WikiLeaker.py <domain of your choosing>`
 
 Voila!
 
