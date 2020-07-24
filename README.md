@@ -13,7 +13,10 @@ A scraper inspired by the Datasploit module written in Python2. This script leve
 + bs4
 
 ### Installing Prerequisites
-`sudo ./setup.sh`
+Make sure that Recon-ng is up to date and install the WikiLeaker module using the following commands in Recon-ng:
+`marketplace install wikileaker`
+To install the standalone version, run the following command:
+`python3 -m pip install -U --user -r requirements.txt`
 
 ## Running Wikileaker.py
 `python3 Wikileaker.py <domain of your choosing>`
@@ -21,6 +24,5 @@ A scraper inspired by the Datasploit module written in Python2. This script leve
 Voila!
 
 # Wikileaker Recon-ng Module
-The setup script should copy the recon-ng module into your `.recon-ng/modules/domain-contacts/` directory in your home directory. If the directory does not exist, you will need to install Recon-ng from github if you want to use Recon-ng and the module instead of the standalone version.
 + You may run `marketplace refresh` followed by `marketplace install wikileaker`
-+ If the above does not work, copy the current repository from Github and run `setup.sh` again
++ If the above does not work, copy the current repository from Github and move the contents of the `recon-ng module` into your directory for recon-ng (`/~/.recon-ng/modules` in Kali).
