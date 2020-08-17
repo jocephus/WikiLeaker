@@ -19,7 +19,7 @@ To install the standalone version, run the following command:
 `python3 -m pip install -U --user -r requirements.txt`
 
 ## Running Wikileaker.py
-`python3 Wikileaker.py <domain of your choosing>`
+`python3 WikiLeaker.py <domain of your choosing>`
 
 Voila!
 
