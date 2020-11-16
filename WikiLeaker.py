@@ -50,8 +50,6 @@ def wikileaks(URL, REQ_VAR):
         elif sendr2_var:
             sendr_var = sendr2_var
         wiki_df = wiki_df.append({'Date': date_var, 'Sender': sendr_var, 'Subject': subj_var, 'URL': url_var, 'Leak': leak_var}, ignore_index=True, sort=True)
-        dframeName = f'{DOMAIN}.csv'
-        wiki_df.to_csv(dframeName)
     for index, r in wiki_df.iterrows():
         date_var = r['Date']
         sendr_var = r['Sender']
@@ -78,10 +76,17 @@ def continuer():
             VALIDATION_REGEX = re.compile(r"(?P<domain>\w+\.\w{2,6})")
             validation_check = VALIDATION_REGEX.findall(str(n_domain))
             if validation_check:
-                URL = 'https://search.wikileaks.org/advanced?order_by=newest_document_date&exact_phrase='+n_domain+'&include_external_sources=True'
-                print(URL)
-                wikileaks(URL, REQ_VAR)
-                continuer()
+                page_count = 1
+                while True:
+                    URL = 'https://search.wikileaks.org/?query=&exact_phrase=' + DOMAIN + \
+                          '&include_external_sources=True&order_by=newest_document_date&page=' + str(page_count)
+                    print(URL)
+                    REQ_VAR = requests.get(URL)
+                    wikileaks(URL, REQ_VAR)
+                    page_count += 1
+        dframeName = f'{DOMAIN}.csv'
+        wiki_df.to_csv(dframeName)
+        continuer()
     else:
         exit()
 
@@ -104,7 +109,9 @@ def run():
                     REQ_VAR = requests.get(URL)
                     wikileaks(URL, REQ_VAR)
                     page_count += 1
-                continuer()
+        dframeName = f'{DOMAIN}.csv'
+        wiki_df.to_csv(dframeName)
+        continuer()
 
 
     except Exception as error_code:
