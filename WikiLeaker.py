@@ -82,11 +82,8 @@ def continuer():
                           '&include_external_sources=True&order_by=newest_document_date&page=' + str(page_count)
                     print(URL)
                     REQ_VAR = requests.get(URL)
-                    if len(REQ_VAR) > 0:
-                        wikileaks(URL, REQ_VAR)
-                        page_count += 1
-                    else:
-                        break
+                    wikileaks(URL, REQ_VAR)
+                    page_count += 1
         dframeName = f'{DOMAIN}.csv'
         wiki_df.to_csv(dframeName)
         continuer()
@@ -110,11 +107,8 @@ def run():
                           '&include_external_sources=True&order_by=newest_document_date&page=' + str(page_count)
                     print(URL)
                     REQ_VAR = requests.get(URL)
-                    if len(REQ_VAR) > 0:
-                        wikileaks(URL, REQ_VAR)
-                        page_count += 1
-                    else:
-                        break
+                    wikileaks(URL, REQ_VAR)
+                    page_count += 1
         dframeName = f'{DOMAIN}.csv'
         wiki_df.to_csv(dframeName)
         continuer()
