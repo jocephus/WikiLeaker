@@ -50,6 +50,8 @@ def wikileaks(URL, REQ_VAR):
         elif sendr2_var:
             sendr_var = sendr2_var
         wiki_df = wiki_df.append({'Date': date_var, 'Sender': sendr_var, 'Subject': subj_var, 'URL': url_var, 'Leak': leak_var}, ignore_index=True, sort=True)
+        dframeName = f'{DOMAIN}.csv'
+        wiki_df.to_csv(dframeName)
     for index, r in wiki_df.iterrows():
         date_var = r['Date']
         sendr_var = r['Sender']
