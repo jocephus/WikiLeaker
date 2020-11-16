@@ -94,10 +94,14 @@ def run():
             VALIDATION_REGEX = re.compile(r"(?P<domain>\w+\.\w{2,6})")
             validation_check = VALIDATION_REGEX.findall(DOMAIN)
             if validation_check:
-                URL = 'https://search.wikileaks.org/advanced?order_by=newest_document_date&exact_phrase='+DOMAIN+'&include_external_sources=True'
-                print(URL)
-                REQ_VAR = requests.get(URL)
-                wikileaks(URL, REQ_VAR)
+                page_count = 1
+                while True:
+                    URL = 'https://search.wikileaks.org/?query=&exact_phrase=' + DOMAIN + \
+                          '&include_external_sources=True&order_by=newest_document_date&page=' + str(page_count)
+                    print(URL)
+                    REQ_VAR = requests.get(URL)
+                    wikileaks(URL, REQ_VAR)
+                    page_count += 1
                 continuer()
 
 
